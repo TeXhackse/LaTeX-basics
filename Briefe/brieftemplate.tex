@@ -1,0 +1,63 @@
+% Kurzes kommentiertes scrletter-Beispiel
+% © 2019 Marei Peischl, marei@texhackse.de
+% 
+\documentclass[
+	ngerman,%Basissprache als globale Option
+	]{scrartcl}
+
+%Vorteil davon scrletter als Paket zu laden:
+% Anlagen können direkt im Dokument mit bearbeitet werden. Alles was in Standard-\LaTeX existiert, gibt es hier auch.
+\usepackage{scrletter}
+
+%Unabhängigkeit gegenüber Compilern
+\usepackage{iftex}
+\ifPDFTeX
+	\usepackage[utf8]{inputenc}%Falls TeX-Distro älter als Frühjahr 2018
+	\usepackage{tgbonum}%Schriftart TeX Gyre Bonum
+	\usepackage[T1]{fontenc}
+\else
+	\usepackage{fontspec}
+	\setmainfont{TeX Gyre Bonum}%Schriftart TeX Gyre Bonum
+\fi
+%Alternative Schriftarten findet man unter https://tug.org/FontCatalogue/
+
+
+\usepackage{babel}%Spracheinstellung, zusammen mit der Sprachoption bei documentclass
+
+\begin{document}
+	
+%Adressdaten aus hinterlegten Daten laden, hier lokale Datei adressdaten.lco.
+%So muss man die nicht jedesmal neu machen.
+%Varianten (privat/geschäftlich) und Installation im lokalen texmf tree möglich
+\LoadLetterOption{adressdaten}
+
+	
+\begin{letter}{Empfänger\\Empfängeradresse\\PLZ ort}
+	
+\setkomavar{subject}{Betreff}
+%Bei geschäftlichen Dokumenten vielleicht auch
+%\setkomavar{title}{Rechnung}
+
+%Zusätzliche Einträge für die Geschäftszeile:
+%date = \today, wenn nicht anders gesezt
+%yourref, yourmail, myref, customer, invoice, place
+%Alle nach Schema:
+\setkomavar{customer}{1234567}
+%Bezeichner können analog geändert werden, z.B.
+%\setkomavar*{customer}{Mandantennummer}
+	
+\opening{Sehr geehrte Damen und Herren,}%Ohne Opening wird der Briefkopf nicht erzeugt => ggf. leer lassen.
+
+Hier landet dann der eigentliche Text.
+
+\closing{Mit freundlichen Grüßen}
+
+%\ps PS: Hab was vergessen
+
+%\encl{Anlage 1\\ Anlage 2}
+
+%\cc{Ggf. Angaben zum Verteiler}
+
+	
+\end{letter}
+\end{document}

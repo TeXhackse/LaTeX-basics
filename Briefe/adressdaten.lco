@@ -1,0 +1,41 @@
+% Kurze lco-Beispieldatei
+% © 2019 Marei Peischl, marei@texhackse.de
+% 
+\ProvidesFile{adressdaten.lco}[2019/10/08]
+% Grundsetzliche setzt \setkomavar den Wert einer Variablen
+% \setkomavar*{Bezeichner} ändert die Zugehörige Bezeichnung
+
+\setkomavar{fromname}{Vorname Name}
+\setkomavar{fromaddress}{Str. Nr\\PLZ Ort}
+%\setkomavar{signature}{}%Falls Abweichend vom Namen
+
+% Die Emailadresse wird standardmäßig nicht ausgegeben, daher wird das explizit aktiviert
+\setkomavar{fromemail}{Email}
+\KOMAoptions{fromemail=true}
+% Analog geht fromphone, frommobilephone, fromfax, fromurl
+
+%Logo
+\setkomavar{fromlogo}{\includegraphics[width=3cm]{example-image}}
+
+\KOMAoptions{fromalign=right}
+
+%Beispiel für eigene komavar
+\newkomavar{fromvat}
+\setkomavar*{fromvat}{USt-IdNr.}
+
+%Daten für Absenderergänzung
+\setkomavar{fromvat}{<USt-IdNr>}
+\setkomavar{frombank}{<Bankverbindung>}
+
+%Absenderergänzung
+\setkomavar{location}{%
+	\raggedleft
+	\ifkomavarempty{fromvat}{}{\usekomavar*{fromvat}:\\\usekomavar{fromvat}\par}%
+	\ifkomavarempty{frombank}{}{\usekomavar*{frombank}:\\\usekomavar{frombank}}
+}
+
+%Definitionen für Seitenfuß
+
+
+
+\endinput
