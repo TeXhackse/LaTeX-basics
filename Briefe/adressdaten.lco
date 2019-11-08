@@ -16,7 +16,11 @@
 
 %Logo
 \setkomavar{fromlogo}{\includegraphics[width=3cm]{example-image}}
+%Damit das Logo auch ausgegeben werden kann:
+\RequirePackage{graphicx}
+\KOMAoptions{fromlogo=true}
 
+%Position Logo und Absenderadresse tauschen
 \KOMAoptions{fromalign=right}
 
 %Beispiel für eigene komavar
