@@ -1,0 +1,101 @@
+\documentclass[ngerman]{scrartcl}
+\usepackage{scrletter}
+\LoadLetterOption{adressdaten}
+
+\usepackage{iftex}
+\ifPDFTeX
+\usepackage[T1]{fontenc}
+\fi
+
+\renewcommand*{\familydefault}{\sfdefault}%serifenlos als default
+
+
+\usepackage{babel}
+
+
+% ===========================
+%    KOMA-MODERNCVCLASSIC
+% ===========================
+
+\usepackage[myblue]{koma-moderncvclassic}% siehe texdoc für mehr infos
+
+
+
+%%%%%%%%%%%%%%%
+% Anpassungen Anschreiben
+\setkomafont{fromaddress}{\normalsize\rmfamily\slshape\color{colortheme}}
+\setkomafont{fromname}{\normalsize\rmfamily\slshape\color{colortheme}}
+\setkomafont{subject}{\normalsize\bfseries\color{colortheme}}
+
+%===== Styleanpassung an ModernCV =====
+\RequirePackage{marvosym} % Symbole für Telefon, Mobile, Mail,...
+\providecaptionname{ngerman}\emailname{\color{colortheme}{\Letter}}%
+\providecaptionname{ngerman}\phonename{\color{colortheme}{\Mobilefone}}%
+\providecaptionname{ngerman}\faxname{\color{colortheme}{\Telefon}}%
+\setlength{\maketitlenamemaxwidth}{.75\textwidth}
+\renewcommand * {\raggedsignature}{\raggedright}
+
+%%%%%%%%%%%%%%%
+
+
+\newcommand*{\totalpagemark}{\usekomafont{pagenumber}\thepage/\pageref{lastpage}}% gesamte Seitenanzahl
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ifoot{CV~\firstname~\familyname}
+\ofoot{\totalpagemark}
+\begin{document}
+	
+	\begin{letter}{Name\\Straße\\Ort}
+		
+		\makeatletter
+		\show\scr@firsthead@var
+		\makeatother
+		
+		\opening{Sehr geehrte/r …}
+		
+		Anschreiben
+		
+		\closing{Mit freundlichen Grüßen}
+		
+	\end{letter}
+	
+	
+	\setcounter{page}{1}
+	\maketitle
+
+	
+	\section{Angaben zur Person}
+	\cvline{Geburtsdatum}{xx.xx.xxxx in Ort}
+	%\cvline{Geburtsort}{Ort}
+	\cvline{Nationalität}{deutsch}
+	\cvline{Familienstand}{ledig}
+	
+	\section{Ausbildung}
+	\cventry{20xx--}{Universität}{}{Ort}{}{Abschluss am xx}
+
+	
+	\section{Außercurriculare Aktivitäten}
+	\cventry{September 2015--\\Juni 2016}{Bundesfreiwilligendienst}{Einrichtung}{Ort}{}{}
+	\section{Sprachkenntnisse}
+	\cvlanguage{Deutsch}{Muttersprache}{}
+	\cvlanguage{Englisch}{fließend}{}
+	\cvlanguage{Latein}{}{Großes Latinum}
+	\section{EDV-Kenntnisse}
+	\cvline{Betriebssysteme}{Sicherer Umgang mit …}
+	\subsection{sonstige IT-Kenntnisse}
+	\cvcomputer{Software}{fortgeschrittene Kenntnisse}{Software}{Experte}
+	\section{Hobbies und sonstige Interessen}
+	\cvline{Musik}{Schlagzeug/Violoncello}
+	\vspace{1.5cm}
+	\raggedright
+	Hamburg, den 1. März 2016
+	
+	\bigskip
+	\null\hfill\parbox{5cm}{\centering
+		\rule{\linewidth}{1pt}
+		%\includegraphics[width=\linewidth,height=1cm]{example-image}%beispiel unterschriftenbild
+		\\\centering\usekomavar{signature}}
+	
+	
+	\label{lastpage}% needed for computing pagetotal
+\end{document}

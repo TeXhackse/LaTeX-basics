@@ -1,0 +1,41 @@
+% Kurze lco-Beispieldatei
+% © 2019 Marei Peischl, marei@texhackse.de
+\ProvidesFile{adressdaten.lco}[2020/06/26]
+
+\KOMAoptions{
+fromalign=right,
+fromrule=false,
+fromlogo=true,
+addrfield=true,
+backaddress=false,
+pagenumber=botright,
+foldmarks=BLMT,
+fromphone=true,
+fromemail=true,
+subject=untitled
+}
+
+\setkomavar{phoneseparator}{~}
+\setkomavar{faxseparator}{~}
+\setkomavar{emailseparator}{~}
+
+\newcommand*{\firstname}{V.}
+\newcommand*{\familyname}{Nachname}
+\newcommand*{\acadtitle}{}
+\newcommand*{\addressstreet}{Straße Nr}
+\newcommand*{\addresscity}{PLZ Ort}
+\newcommand*{\address}[2]{\addressstreet{#1}\addresscity{#2}}
+
+\renewcommand*{\title}{Lebenslauf}% für PDF
+
+
+
+\setkomavar{fromphone}{+49\,000\,00\,00\,00\,42}
+\setkomavar{fromfax}{}
+\setkomavar{fromemail}{mail@texhackse.de}
+
+\setkomavar{fromname}{\firstname~\familyname}
+\setkomavar{fromaddress}{\addressstreet\\\addresscity}
+
+
+\endinput
