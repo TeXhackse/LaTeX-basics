@@ -38,8 +38,5 @@
 	\ifkomavarempty{frombank}{}{\usekomavar*{frombank}:\\\usekomavar{frombank}}
 }
 
-%Definitionen für Seitenfuß
-
-
 
 \endinput

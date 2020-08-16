@@ -1,0 +1,102 @@
+\documentclass[
+	aspectratio=169, %Breitbildformat
+	]{beamer}
+
+
+%Kompatibilität für alle Compiler
+\usepackage{iftex}
+\ifPDFTeX
+\usepackage[utf8]{inputenc}%falls Distribution < TL2018
+\usepackage[T1]{fontenc}
+\fi
+
+\usepackage[ngerman]{babel}% Sprachangabe -- fals english, ngerman entsprechend ersetzen
+
+
+\usetheme[
+	block=fill, %Blöcke sichtbar schalten
+	]{metropolis}
+
+\begin{document}
+	
+\titlegraphic{
+%	So werden Bilder eingebunden
+	\includegraphics[width=1.5cm]{example-image}
+	% Wenn ihr eigene und keine Beispielbilder nehmt, dann sollte das Bild entweder im Gleichen ordner wie die .tex-Datei liegen oder in einem Unterordnet.
+%	Falls Unterordner "Bilder":
+%	\includegraphics[width=1.5cm]{Bilder/dein-eigenes-bild}
+}
+\title{Demo-Datei beamer}
+\subtitle{Mit Verwendung des metropolis theme}
+\author{Marei}
+\institute{pei\TeX}
+
+%Titelseite 
+\frame{\titlepage}
+
+\section{Abschnitt}
+\begin{frame}{Folientitel}
+Folie mit Titel
+\end{frame}
+
+\begin{frame}{Aufzählung}
+\begin{itemize}
+	\item eins
+	\item zwei -- Ab hier wird schrittweise Aufgeblättert
+	\pause %bewirkt, dass der folgende Inhalt ers ein Overlay später eingeblendet wird.
+	\begin{itemize}
+		\item nach der ersten pause
+		\pause
+		\item und noch eine	
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Nummerierte Liste}
+\begin{enumerate}
+	\item eins
+	\item zwei
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{großes Bild}
+\centering%zentriert den inhalt der ganzen seite
+%Bild wird geladen, skalierung über Breite ODER Höhe möglich. Hier in Abhängigkeit von der Zeilenbreite
+\includegraphics[width=.9\linewidth]{example-image-16x9}
+\end{frame}
+
+\section{Platzierung}
+
+\begin{frame}{Spalten}
+
+%Umgebung für mehere Spalten
+\begin{columns}
+	%Spalte 1 mit 50% der Zeilenbreite
+	\begin{column}{.5\linewidth}%Breite anteilig an zeilenbreite
+	\includegraphics[width=\linewidth]{example-image}
+	\end{column}
+
+	%Spalte 2 mit 30%
+	\begin{column}{.3\linewidth}
+	%Man kann elemente auch ineinander Schachteln.
+	\begin{itemize}
+		\item eins
+		\item zwei
+	\end{itemize}
+	\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Boxen}
+\begin{block}{Blocktitel}
+Inhalt
+\end{block}
+
+\begin{block}{Blocktitel}
+	Inhalt
+\end{block}
+
+\end{frame}
+
+\end{document}
