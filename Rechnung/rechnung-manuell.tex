@@ -1,0 +1,56 @@
+\documentclass[%
+	parskip=half*,
+	ngerman,
+]{scrartcl}
+
+\usepackage{babel}
+\usepackage{scrletter}
+
+\usepackage{iftex}
+\ifPDFTeX
+	\usepackage[T1]{fontenc}
+\fi
+
+
+
+\usepackage{booktabs}
+\usepackage{xltabular}
+\usepackage{siunitx}
+\usepackage{tabularx}
+
+\usepackage[autostyle]{csquotes}
+\usepackage[datamodel=adressen,defernumbers]{biblatex}
+\addbibresource{biblatex.bib}
+
+\LoadLetterOption{firma}
+
+
+\begin{document}
+	\setkomavar{date}{18. Mai 2018}
+	\setkomavar{customer}{42}
+	\setkomavar{invoice}{156}
+	\setkomavar{title}{Rechnung}
+	
+	\begin{letter}{Vorname Nachname\\Firma\\Adresse\\PLZ Ort}
+		\opening{Guten Tag,}
+		
+		Hiermit stelle ich Ihnen meine Arbeit im Rahmen der Mitarbeit an Ihrem Buch-Projekt in Rechnung.
+
+		\begin{tabularx}{\linewidth}{@{}llXrr@{}}
+			\toprule
+			\emph{Pos.} & \emph{Std.} & \emph{Beschreibung}                                                           & \emph{Einzelpreis} & \emph{Gesamtpreis} \\ \midrule[\heavyrulewidth]
+			1           & 2           & Dienstleistung 1                                                              &                 50 &                100 \\
+			2           & 5           & Gratis-Support bei Verwendungsproblemen bezüglich der enwickelten Mechanismen &                --- &                --- \\ \midrule[\heavyrulewidth]
+			                                                                                           \multicolumn{4}{r}{Summe (Brutto):} &                100 \\
+			                                                                                            \multicolumn{4}{r}{MwSt. :} &                100 \\
+			                                                                                            \multicolumn{4}{r}{Summe (netto):} &                100 \\ \bottomrule
+		\end{tabularx}
+	
+		Ich bitte Sie den oben genannten Betrag auf unten genanntes Konto zu überweisen.
+
+		Für das in mich gesetzte Vertrauen und die gute Zusammenarbeit bedanke ich mich herzlichst.
+		\closing{Mit freundlichen Grüßen}
+	\end{letter}
+\end{document}
+
+
