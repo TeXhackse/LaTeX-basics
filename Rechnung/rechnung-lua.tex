@@ -1,0 +1,39 @@
+% !TeX Program=lualatex
+\documentclass[parskip=half-,ngerman]{scrartcl}
+\usepackage{babel}
+\input{peitex-rechnung_preamble}
+
+\SetDefaultVAT{16}%Voreinstellung falls keine Option fpr die Umsatzsteuer angegeben wird
+
+%Lade Adressdaten aus der Datei, hier firma.lco
+\LoadLetterOption{firma}
+
+
+\begin{document}
+\setkomavar{invoice}{2020:123}	
+\setkomavar{title}{Rechnung}
+
+\newkomafont{invoicetotal}{\bfseries}
+
+\begin{letter}{Firma\\Vorname Nachname\\Rechnungsadresse\\PLZ Ort}
+	
+\opening{Guten Tag,}
+
+hiermit stelle ich Ihnen meine Arbeit im Rahmen des Projektes XX in Rechnung. Der Leistungszeitraum ist aufgrund der Änderung der Umsatzsteuer je Position angegeben.
+
+%\neueposition[Umsatzsteuer in \% falls abweichend vom Default]{Anzahl}{Beschreibung}{Einzelpreis netto}
+\AddInvoiceItem[19]{3}{Weiterentwicklung/funktionale Erweiterung, 04--06/2020}{90}
+\AddInvoiceItem{5}{Weiterentwicklung/funktionale Erweiterung, 07--09/2020}{90.01}
+\AddInvoiceItem[19]{12.5}{Support und Pflege, 04--06/2020}{50}
+\AddInvoiceItem{17.5}{Support und Pflege, 07--09/2020}{50}
+
+\PrintInvoiceTabular
+
+Ich bitte Sie oben genannte Betrag binnen 30 Tagen auf unten genanntes Konto zu überweisen.
+
+%Falls gewünscht
+%\closing{}
+
+	
+\end{letter}
+\end{document}

@@ -1,0 +1,20 @@
+\ProvidesFile{firma.lco}[2019/03/02]
+
+\setkomavar{signature}{Marei}
+\setkomavar{fromurl}{https://peitex.de}
+\setkomavar{fromemail}{kontakt@peitex.de}
+\setkomavar{fromaddress}{pei\TeX{} \TeX{}nical Solutions\\Straße 18\\20253 Hamburg}
+
+\setkomavar{frombank}{Bank XXX\\IBAN …}
+\setkomavar{firstfoot}{\usekomafont{pagefoot}\def\\{\space|\space}\usekomavar{fromaddress}\\\usekomavar{frombank}}
+
+\RequirePackage{array}
+
+\RequirePackage{graphicx}
+\setkomavar{fromlogo}{\includegraphics[width=3cm]{example-image}}
+
+%Ganzsseitiger Hintergrund
+%\DeclareNewLayer[page,background, contents={\includegraphics{Briefbogen}}]{vordruck}
+%\AddLayersToPageStyle{@everystyle@}{vordruck}
+
+\endinput

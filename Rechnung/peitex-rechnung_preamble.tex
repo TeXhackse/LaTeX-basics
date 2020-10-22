@@ -1,0 +1,95 @@
+\RequirePackage{scrletter}
+\PassOptionsToPackage{table}{xcolor}
+\RequirePackage{luacode}
+\RequirePackage{xparse}
+\newcounter{invoiceitem}
+
+\RequirePackage{xltabular}
+\RequirePackage{booktabs}
+\RequirePackage{ragged2e}
+\RequirePackage[round-mode=places,output-decimal-marker={,},round-integer-to-decimal]{siunitx}
+
+\directlua{require("peitex-rechnung.lua")}
+
+\NewDocumentCommand{\InitVAT}{om}{
+	\luaexec{
+	invoice.items[\luastringO{\romannumeral#2}]={}
+	}
+	\IfNoValueTF {#1}
+		{
+			\luaexec{invoice.vat[\luastringO{\romannumeral#2}]=#2/100}
+		}{
+			\luaexec{invoice.vat[\luastringO{\romannumeral#2}]=#1}
+		}
+}
+
+%initialisierung auf 5,7,16 oder 19 % Mwst
+\InitVAT{16}
+\InitVAT{19}
+\InitVAT{5}
+\InitVAT{7}
+
+\newcommand*{\SetDefaultVAT}[1]{\def\defaultVAT{#1}}
+
+\newcommand*{\AddInvoiceItem}[4][\defaultVAT]{%
+	\luaexec{invoice.additem(\luastringO{\romannumeral#1}, #2,
+	"\luaescapestring{\unexpanded{#3}}",
+#4 ) }
+}
+
+
+\newcolumntype{P}{S[round-precision=2,table-parse-only,table-number-alignment=right]<{\PrintTableCurrency}}
+
+\newcommand*{\PrintInvoiceTabular}{
+	\begin{xltabular}{\linewidth}{@{}rS[round-precision=1,table-format=2.1]>{\RaggedRight}XPP@{}}
+	\toprule[\lightrulewidth]
+	\noalign{\global\let\PrintTableCurrency\relax}%
+	\small\emph{Pos.}&\small\emph{Std.}&\small\emph{Beschreibung}&\small\emph{Einzelpreis}&\small\emph{Gesamtpreis}\\\midrule[\heavyrulewidth]
+	\noalign{\global\let\PrintTableCurrency\TableCurrency}%
+	\endhead
+	\bottomrule[\lightrulewidth]\multicolumn{5}{@{}p{\textwidth}@{}}{\strut\hspace*{\fill}\footnotesize Fortsetzung auf der nächsten Seite}\endfoot
+	\bottomrule\endlastfoot
+	\directlua{ invoice.printitems()}
+	\midrule[\heavyrulewidth]
+	\directlua{invoice.printsumvat()}
+\end{xltabular}
+}
+
+%Ausgabe der einzelnen Rechnungspositionen
+\newcommand*{\PrintInvoiceItem}[5][]{%
+	\stepcounter{invoiceitem}%
+	\theinvoiceitem%Positionsnummer
+	&#2% Anzahl
+	&#3\space(\printVAT{#1} MwSt.)% Beschreibung mit Angabe der MwSt, in Klammern
+	&#4%Einzelpreis
+	&#5%Gesamtpreis
+	\tabularnewline
+}
+
+\newcommand*{\PrintInvoiceSum}[2]{
+	\PrintSum{\csname invoicesum#1name\endcsname}{#2}
+}
+
+\newcommand*{\PrintVatSum}[3][]{
+	\PrintSum{\invoicesumvatname[#1]{#2}}{#3}
+}
+
+\newcommand*{\invoicesumnettoname}{Summe (Netto)}
+\newcommand*{\invoicesumbruttoname}{Summe (Brutto)}
+\newcommand*{\invoicesumseparator}{:\space}
+\newcommand*{\invoicesumvatname}[2][1]{MwSt. \printVAT{#2}\space	(\num[round-precision=2]{#1}\TableCurrency)}
+\newcommand*{\TableCurrency}{\,€}
+\newcommand*{\printVAT}[1]{\num[round-precision=0,round-integer-to-decimal=false]{#1}\,\%}
+
+\renewcommand*{\theinvoiceitem}{\ifnum\value{invoiceitem}<10\relax0\fi\arabic{invoiceitem}}
+
+\newcommand*{\PrintPositionenVAT}[5]{%
+	\stepcounter{invoiceitem}%
+	\theinvoiceitem&#1&#2\space(\printVAT{#3})&#4&#5\tabularnewline
+}
+	
+\newcommand*{\PrintSum}[2]{
+	&&\multicolumn{1}{r}{#1\invoicesumseparator}&\multicolumn{1}{l}{}&#2\tabularnewline
+}
+
+\endinput
