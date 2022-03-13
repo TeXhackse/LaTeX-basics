@@ -1,0 +1,31 @@
+\makeatletter
+\renewcommand*{\backaddr@format}[1]{\rule[-\ht\strutbox]{0pt}{0pt}\underline{#1}}
+
+\LoadLetterOption{DIN}
+\@setplength{locvpos}{50mm}
+\@setplength{lochpos}{-125mm}
+\@setplength{locwidth}{75mm}%max
+\@setplength{locheight}{40mm}%minimalangabe
+\@setplength{refvpos}{8.4mm + \useplength{toaddrvpos} + \useplength{toaddrheight}}
+
+\setkomavar{location}{%
+	\setlength{\parskip}{\z@}%
+	\setlength{\parindent}{\z@}%
+	\renewcommand*{\do@set@reffield}[1]{\Ifkomavarempty{##1}{}{%
+			\Ifkomavarempty{##1}{}{\usekomavar*{##1}:~}\usekomavar{##1}\par
+	}}%
+	\@set@reffields
+	\par\vspace{\baselineskip}%
+	\def\\{\par}%
+	\usekomavar{fromname}\\
+	\usekomavar{fromaddress}%
+	\par\vspace{\baselineskip}%
+	\do@set@reffield{date}%
+	\global\def\@set@reffields{}%
+}
+
+\KOMAoptions{refline=nodate,addrfield=topaligned,parskip=full}
+
+\setkomavar{firsthead}{\usekomavar{fromlogo}}
+
+\makeatother

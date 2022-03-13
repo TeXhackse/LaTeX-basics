@@ -1,0 +1,23 @@
+% Kurze lco-Beispieldatei
+% © 2022 Marei Peischl, marei@peitex.de
+% 
+\ProvidesFile{adressdaten.lco}[2022/03/13]
+% Grundsetzliche setzt \setkomavar den Wert einer Variablen
+% \setkomavar*{Bezeichner} ändert die Zugehörige Bezeichnung
+
+\setkomavar{fromname}{Vorname Name}
+\setkomavar{fromaddress}{Str. Nr\\PLZ Ort}
+%\setkomavar{signature}{}%Falls Abweichend vom Namen
+
+% Die Emailadresse wird standardmäßig nicht ausgegeben, daher wird das explizit aktiviert
+\setkomavar{fromemail}{Email}
+\KOMAoptions{fromemail=true}
+% Analog geht fromphone, frommobilephone, fromfax, fromurl
+
+%Logo
+\setkomavar{fromlogo}{\includegraphics[width=3cm]{example-image}}
+%Damit das Logo auch ausgegeben werden kann:
+\RequirePackage{graphicx}
+\setkomavar{firsthead}{\usekomavar{fromlogo}}
+
+\endinput
