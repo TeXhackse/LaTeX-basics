@@ -9,8 +9,13 @@ jobs:
    - run: echo "running texlive-node-github:latest"
    - name: Set up Git repository
      uses: actions/checkout@v3
-   - name: to main dirt
-     run: |
-       cd papers/
-       latexmk -r tex/CI.rc
+   - name: build documents
+     run: latexmk
+   - name: upload pdfs
+     uses: actions/upload-artifact@v3
+     with:
+       name: pdf-results
+       path: |
+         */*.pdf
+	 */*/*.pdf
 
