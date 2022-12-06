@@ -17,5 +17,5 @@ jobs:
        name: pdf-results
        path: |
          */*.pdf
-	 */*/*.pdf
+         */*/*.pdf
 
