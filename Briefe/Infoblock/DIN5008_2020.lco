@@ -2,11 +2,11 @@
 \renewcommand*{\backaddr@format}[1]{\rule[-\ht\strutbox]{0pt}{0pt}\underline{#1}}
 
 \LoadLetterOption{DIN}
-\@setplength{locvpos}{50mm}
-\@setplength{lochpos}{-125mm}
-\@setplength{locwidth}{75mm}%max
-\@setplength{locheight}{40mm}%minimalangabe
-\@setplength{refvpos}{8.4mm + \useplength{toaddrvpos} + \useplength{toaddrheight}}
+\setplength{locvpos}{50mm}
+\setplength{lochpos}{-125mm}
+\setplength{locwidth}{75mm}%max
+\setplength{locheight}{40mm}%minimalangabe
+\setplength{refvpos}{8.4mm + \useplength{toaddrvpos} + \useplength{toaddrheight}}
 
 \setkomavar{location}{%
 	\setlength{\parskip}{\z@}%
