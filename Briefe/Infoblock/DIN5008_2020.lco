@@ -25,7 +25,7 @@
 }
 
 \KOMAoptions{refline=nodate,addrfield=topaligned,parskip=full}
-
+\setplength{backaddrheight}{5mm+\dp\strutbox}
 \setkomavar{firsthead}{\usekomavar{fromlogo}}
 
 \makeatother
